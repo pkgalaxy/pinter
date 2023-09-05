@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home - Pintereso
+{% endblock %}
+
+{% block mainn %}
+    <main role="main">
+        
+    
+    <section class="mt-4 mb-5">
+    <div class="container mb-4">
+    	<h1 class="font-weight-bold title">Explore</h1>
+    	<div class="row">
+    		<nav class="navbar navbar-expand-lg navbar-light bg-white pl-2 pr-2">
+    		<button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExplore" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+    		</button>
+    		<div class="collapse navbar-collapse" id="navbarsExplore">
+    			<ul class="navbar-nav">
+    				<li class="nav-item">
+    				<a class="nav-link" href="{% url 'explore' %}?name=travel">Travel</a>
+    				</li>
+    				<li class="nav-item">
+    				<a class="nav-link" href="{% url 'explore' %}?name=Astronomy">Astronomy</a>
+    				</li>
+    				<li class="nav-item">
+    				<a class="nav-link" href="{% url 'explore' %}?name=nature">Nature</a>
+    				</li>
+    				<li class="nav-item">
+    				<a class="nav-link" href="{% url 'explore' %}?name=fashion">Fashion</a>
+    				</li>
+    				<li class="nav-item dropdown">
+    				<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+    				<div class="dropdown-menu shadow-lg" aria-labelledby="dropdown01">
+    					<a class="dropdown-item" href="{% url 'explore' %}?name=4k 2k">4K / 2K</a>
+    					<a class="dropdown-item" href="{% url 'explore' %}?name=HD">HD</a>
+    					<a class="dropdown-item" href="{% url 'explore' %}?name=Desktop">Desktop</a>    					    					
+    					<a class="dropdown-item" href="{% url 'explore' %}?name=Mobile">Mobile</a>
+    				</div>
+    				</li>
+    			</ul>
+    		</div>
+    		</nav>
+    	</div>
+    </div>
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="card-columns">
+    			
+{% for i in data %}
+    			<div class="card card-pin">
+    				<img class="card-img" src="{{ i.image.url}}" alt="Card image">
+    				<div class="overlay">
+    					<h2 class="card-title title">{{i.title}}</h2>
+    					<div class="more">
+    						<a href="{% url 'single-post' i.id %}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+    					</div>
+    				</div>
+    			</div>
+  {% endfor %}  
+				<!-- Search items show here  -->
+  {% if zata %}  
+  {% for i in zata %}
+    			<div class="card card-pin">
+    				<a href="{% url 'single-post' i.id %}"><img class="card-img" src="{{ i.image.url}}" alt="Card image"></a>
+    				<div class="overlay">
+    					<h2 class="card-title title">{{i.title}}</h2>
+    					<div class="more">
+    						<a href="{% url 'single-post' i.id %}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+    					</div>
+    				</div>
+    			</div>
+  {% endfor %}  
+  {% endif %}
+
+  <!-- {% if yata %}
+  {% for i in yata %}
+    			<div class="card card-pin">
+    				<img class="card-img" src="{{ i.image.url}}" alt="Card image">
+    				<div class="overlay">
+    					<h2 class="card-title title">{{i.title}}</h2>
+    					<div class="more">
+    						<a href="{% url 'single-post' i.id %}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+    					</div>
+    				</div>
+    			</div>
+  {% endfor %}  
+  {% endif %} -->
+				
+
+    			
+    		</div>
+    	</div>
+    </div>
+    </section> 
+        
+    </main>
+{% endblock %}
+    

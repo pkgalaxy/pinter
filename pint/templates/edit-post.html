@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block mainn %}
+    <div class="container">
+        <form  method="POST" action="{% url 'edit-post' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!-- {{ form.media }} -->    
+            <input class="btn" type="submit" value="Update" size="40"><br><br>
+    
+    
+        </form>
+    </div> 
+{% endblock %}
+
+
+
+

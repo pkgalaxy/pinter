@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Author - Pintereso
+{% endblock %}
+
+{% block mainn %}
+    <main role="main">
+	
+    <!-- User  photo, name start -->
+    <div class="jumbotron border-round-0 min-50vh">
+        <img src="{% static 'assets/img/bg.jpg' %}" alt="">
+    </div>
+    <div class="container mb-4">
+    	<img src="{{ zata.profile_picture.url }}" alt="upload image" class="mt-neg100 mb-4 rounded-circle" width="128">
+    	<h1 class="font-weight-bold title">{{ nata.var.username }}   </h1>
+    	<p>
+    		{{ zata.bio }}
+    	</p>
+    </div>
+	
+
+
+<!-- user end  -->
+
+
+<!-- user posts start  -->
+    <div class="container-fluid mb-5">
+    	<div class="row">
+    		<div class="card-columns">
+
+    			<div class="card card-pin">
+    				<img class="card-img" src="https://images.unsplash.com/photo-1489743342057-3448cc7c3bb9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6d284a2efbca5f89528546307f7e7b87&auto=format&fit=crop&w=500&q=60" alt="Card image">
+    				<div class="overlay">
+    					<h2 class="card-title title">Some Title</h2>
+    					<div class="more">
+    						<a href="post.html">
+    						<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+    					</div>
+    				</div>
+    			</div>	
+
+
+				{% for post in lata %}	
+               
+    			<div class="card card-pin">
+    				<img class="card-img" src="{{ post.image.url}}" alt="Card image">
+    				<div class="overlay">
+    					<h2 class="card-title title">{{post.title}}</h2>
+    					<div class="more">
+							<a href="{% url 'single-post' post.id %}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
+    					</div>
+    				</div>
+    			</div>
+				{% endfor %} 	
+    		
+    		</div>
+    	</div>
+    </div>
+        
+    </main>
+
+    {% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Post - Pintereso
+{% endblock %}
+
+{% block mainn %}
+    
+    <div class="container">
+    	<div class="row justify-content-center">
+    		<div class="col-md-7">
+    			<article class="card" >
+    			<img class="card-img-top mb-2" src="{{blog.image.url}}" alt="Card image">
+				<div class="pk-owner-details">
+					<div class="download-button">
+						<a href="{{ blog.image.url }}" download><button type="button" class="btn btn-success">Download Image</button></a>
+					</div>
+
+					<div class="pd-dp">
+						<img src="{{ owner_profile.profile_picture.url }}" alt=""><p><a href="{% url 'owner' blog.var %}">{{ blog.var.username }}</a></p>
+					</div>
+				</div>
+    			<div class="card-body">
+				
+					<div style="display: flex;">
+						<div>
+							{% if request.user in blog.likes.all %}
+								<form action="{% url 'like-post' blog.id %}" method="POST">
+									{% csrf_token %}
+									<button style="background: none; border: none;" type="submit" class="heart-button"><i class="fa-solid fa-heart fa-xl" style="color: #ce0000;"></i></button>
+								</form>
+							{% else %}
+								<form action="{% url 'like-post' blog.id %}" method="POST">
+									{% csrf_token %}
+									<button style="background: none; border: none;" type="submit" class="heart-button"><i class="fa-regular fa-heart fa-xl"></i></button>					
+								</form>
+							{% endif %}
+						</div>
+						<div style="margin-left: 10px;">
+							<p>Likes: <strong>{{ blog.likes.count }}</strong></p>
+						</div>
+					</div>
+
+			<!-- like button  -->
+    				<h1 class="card-title display-4"> {{blog.title}} </h1>
+    				{{ blog.desc }} <br>
+					{{ blog.create_date | date:"d-M-Y" }}
+
+
+<div class="comment-section">
+
+	<!-- Display post content -->
+	<h2>Comments</h2>
+	<ul>
+		{% for comment in comments %}
+		<li style="padding: 1%;">
+			<a href="{% url 'owner' comment.author  %}"><img src="{{ comment.author_dp.profile_picture.url }}" style="border-radius: 50%;" alt="profile pic" width="30"></a>
+			<strong>{{ comment.author }}:</strong>
+			{{ comment.text }}
+		</li>
+		{% empty %}
+		<li>No comments yet.</li>
+		{% endfor %}
+	</ul>
+	<form method="post" action="{% url 'single-post' blog.id %}">
+		{% csrf_token %}
+		{{ comment_form.as_p }}
+		<div class="comment-button"><button type="submit">Add Comment</button></div>
+
+	</form>
+</div>
+    				
+    			</div>
+    			</article>
+    		</div>
+    	</div>
+    </div>
+ 
+
+	{% endblock %}
+   
