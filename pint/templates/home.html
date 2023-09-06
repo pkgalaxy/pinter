@@ -49,7 +49,7 @@ Home - Pintereso
     	<div class="row">
     		<div class="card-columns">
     			
-{% for i in data %}
+{% for i in page %}
     			<div class="card card-pin">
     				<img class="card-img" src="{{ i.image.url}}" alt="Card image">
     				<div class="overlay">
@@ -59,7 +59,9 @@ Home - Pintereso
     					</div>
     				</div>
     			</div>
-  {% endfor %}  
+  {% endfor %} 
+  
+ 
 				<!-- Search items show here  -->
   {% if zata %}  
   {% for i in zata %}
@@ -92,8 +94,25 @@ Home - Pintereso
 
     			
     		</div>
+			
     	</div>
+		
     </div>
+	<div class="pagination" style="text-align: center; display: flex; justify-content: center;">
+		<span class="step-links">
+			{% if page.has_previous %}
+				<a href="?page=1">&laquo; &laquo; <button class="next-button">First</button></a>
+				<a href="?page={{ page.previous_page_number }}"><button class="next-button">previous</button></a>
+			{% endif %}
+	
+			<span class="current-page"><strong>{{ page.number }}</strong></span>
+	
+			{% if page.has_next %}
+				<a href="?page={{ page.next_page_number }}"><button class="next-button">next</button></a>
+				<a href="?page={{ page.paginator.num_pages }}"><button class="next-button">last</button>&raquo; &raquo;</a>
+			{% endif %}
+		</span>
+	</div>
     </section> 
         
     </main>

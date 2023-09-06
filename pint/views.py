@@ -5,11 +5,14 @@ from django.contrib import messages
 from .forms import *
 from .models import *
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator
     
 def home(requests):
     data = post.objects.all().order_by('-create_date')
-    return render(requests, 'home.html', { 'data' : data})
+    paginator=Paginator(data,12)
+    page_number = requests.GET.get('page')
+    page = paginator.get_page(page_number)
+    return render(requests, 'home.html', { 'page' : page})
 
 @login_required
 def po_st(requests,pk):  #single post
@@ -156,4 +159,4 @@ def like_post(request, post_id):
 
 
 
-
+ 

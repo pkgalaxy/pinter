@@ -5,6 +5,14 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /* line 1, node_modules/bootstrap/scss/_root.scss */
+.next-button {
+background-color: #bd081c;
+color: white;
+border: none;
+border-radius: 5px;
+font-size:medium;
+}
+
 
 .pk-owner-details {
 display:flex;
@@ -22,6 +30,7 @@ margin-bottom: 1%;
   width: 30px;
   height: 30px;
   display: flex;
+  margin-left: 23%;
   }
 
   .pd-dp p {
