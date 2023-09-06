@@ -38,6 +38,7 @@ def po_st(requests,pk):  #single post
             except Profile.DoesNotExist:
                 pass          
             new_comment.save()
+            
    else:
         comment_form = CommentForm()
    return render(requests, 'single-post.html', {'cost': cost, 'comments': comments, 'comment_form': comment_form,'blog': blog, 'owner_profile': owner_profile})
@@ -134,15 +135,15 @@ def explore(request):  #search
     
     if search_query:
          zata = zata.filter(title__icontains=search_query) | zata.filter(desc__icontains=search_query)
-    context = {
-        'zata': zata,
-    }
-
+         
     if search_query2:
             zata = zata.filter(title__icontains=search_query2) | zata.filter(desc__icontains=search_query2)
+    
     context = {
         'zata': zata,
-    }    
+        'search_query': search_query,
+        'search_query2': search_query2,
+    }
     return render(request, 'home.html', context)
 
 @login_required

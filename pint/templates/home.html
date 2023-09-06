@@ -45,6 +45,7 @@ Home - Pintereso
     		</nav>
     	</div>
     </div>
+	
     <div class="container-fluid">
     	<div class="row">
     		<div class="card-columns">
@@ -61,10 +62,11 @@ Home - Pintereso
     			</div>
   {% endfor %} 
   
- 
 				<!-- Search items show here  -->
-  {% if zata %}  
-  {% for i in zata %}
+  {% if zata %}
+  {% if search_query %}<h5>search result '{{search_query }}'</h5>{% endif %}
+  {% if search_query2 %}<h4>{{search_query2}}</h4>{% endif %}
+  {% for i in zata %}		
     			<div class="card card-pin">
     				<a href="{% url 'single-post' i.id %}"><img class="card-img" src="{{ i.image.url}}" alt="Card image"></a>
     				<div class="overlay">
@@ -74,30 +76,13 @@ Home - Pintereso
     					</div>
     				</div>
     			</div>
-  {% endfor %}  
-  {% endif %}
-
-  <!-- {% if yata %}
-  {% for i in yata %}
-    			<div class="card card-pin">
-    				<img class="card-img" src="{{ i.image.url}}" alt="Card image">
-    				<div class="overlay">
-    					<h2 class="card-title title">{{i.title}}</h2>
-    					<div class="more">
-    						<a href="{% url 'single-post' i.id %}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
-    					</div>
-    				</div>
-    			</div>
-  {% endfor %}  
-  {% endif %} -->
-				
-
-    			
+	{% endfor %}
+	{% endif %}
+					
     		</div>
-			
-    	</div>
-		
+    	</div>	
     </div>
+
 	<div class="pagination" style="text-align: center; display: flex; justify-content: center;">
 		<span class="step-links">
 			{% if page.has_previous %}
@@ -112,7 +97,7 @@ Home - Pintereso
 				<a href="?page={{ page.paginator.num_pages }}"><button class="next-button">last</button>&raquo; &raquo;</a>
 			{% endif %}
 		</span>
-	</div>
+	</div>	
     </section> 
         
     </main>
