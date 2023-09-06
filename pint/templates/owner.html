@@ -31,16 +31,14 @@ Author - Pintereso
     		<div class="card-columns">
 
 
-				{% for post in lata %}	
-               
-    			<div class="card card-pin">
-    				<img class="card-img" src="{{ post.image.url}}" alt="Card image">
+				{% for i in lata %}	
+				<div class="card card-pin">
+					<img class="card-img" src="{{ i.image.url}}" alt="Card image">
+					<a href="{% url 'single-post' i.id %}">
     				<div class="overlay">
-    					<h2 class="card-title title">{{post.title}}</h2>
-    					<div class="more">
-							<a href="{% url 'single-post' post.id %}"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i> More </a>
-    					</div>
+    					<h2 class="card-title title">{{i.title}}</h2>
     				</div>
+					</a>
     			</div>
 				{% endfor %} 	
     		
