@@ -43,7 +43,12 @@
     	<ul class="navbar-nav ml-auto align-items-center">
     		<li class="nav-item dropdown"> 
             {% if user.is_authenticated %} 
+            <!-- {% if wata %}
+            <li style="margin-top: 10px; margin-bottom: 10px;"><img class="rounded-circle mr-2" src="{{ wata.profile_picture.url }}" width="30"><span>{{ user.username }}</span></li>
+            {% else %}
             <li style="margin-top: 10px; margin-bottom: 10px;"><img class="rounded-circle mr-2" src="{% static 'assets/img/no-dp.png' %}" width="30"><span>{{ user.username }}</span></li>
+            {% endif %} -->
+            <span>Hi.. {{ user.username }}</span>
             <li><span class="dropdown-item"><a href="{% url 'user-post/' %}" class="btn btn-primary d-block"> My Profile</a></span> </li>
             <li><span class="dropdown-item"><a href="{% url 'post-upload/' %}" class="btn btn-primary d-block"> Upload</a></span> </li>           
             <li><span class="dropdown-item"><a href="{% url 'logout/' %}" class="btn btn-primary d-block"> Log out </a></span> </li>

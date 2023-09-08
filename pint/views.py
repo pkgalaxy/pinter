@@ -12,6 +12,7 @@ def home(requests):
     paginator=Paginator(data,12)
     page_number = requests.GET.get('page')
     page = paginator.get_page(page_number)
+   
     return render(requests, 'home.html', { 'page' : page})
 
 @login_required
@@ -63,7 +64,7 @@ def post_upload(requests):
             return redirect('user-post/')  # Redirect to a success page or another view
     else:
         form = UserData()
-    return render(requests, 'post-upload.html', 'base.html', {'form': form})
+    return render(requests, 'post-upload.html', {'form': form})
 
 def log_in(requests):
    
