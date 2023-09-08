@@ -7,7 +7,7 @@ Author - Pintereso
 
 {% block mainn %}
     <main role="main">
-	
+	{% for zata in zata%}
     <!-- User  photo, name start -->
     <div class="jumbotron border-round-0 min-50vh">
         <img src="{% static 'assets/img/bg.jpg' %}" alt="">
@@ -19,6 +19,7 @@ Author - Pintereso
     		{{ zata.bio }}
     	</p>
     </div>
+	{% endfor %}
 	
 
 

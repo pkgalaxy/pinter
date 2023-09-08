@@ -63,7 +63,7 @@ def post_upload(requests):
             return redirect('user-post/')  # Redirect to a success page or another view
     else:
         form = UserData()
-    return render(requests, 'post-upload.html', {'form': form})
+    return render(requests, 'post-upload.html', 'base.html', {'form': form})
 
 def log_in(requests):
    
@@ -105,7 +105,7 @@ def owner(requests, abc):
     user=User.objects.get(username=abc)
     lata=post.objects.filter(var=user)
     zata=Profile.objects.filter(car=user)
-    return render(requests, 'owner.html', {'lata':lata, 'nata':lata[0], 'zata':zata[0]})
+    return render(requests, 'owner.html', {'lata':lata, 'nata':lata, 'zata':zata})
 
 @login_required
 def edit_profile(requests):
