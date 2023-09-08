@@ -60,9 +60,14 @@ Post - Pintereso
                     	<ul>
                     		{% for comment in comments %}
                     		<li style="padding: 1%;">
-                    			<a href="{% url 'owner' comment.author  %}"><img src="{{ comment.author_dp.profile_picture.url }}" style="border-radius: 50%;" alt="profile pic" width="30"></a>
-                    			<strong>{{ comment.author }}:</strong>
-                    			{{ comment.text }}
+								{% if comment.author_dp.profile_picture %}
+                    			<a href="{% url 'owner' comment.author  %}"><img src="{{ comment.author_dp.profile_picture.url }}" style="border-radius: 50%;" alt="no dp" width="30"></a>
+								{% else %}
+								<img src="{% static 'assets/img/no-dp.png' %}" style="border-radius: 50%;" alt="no dp" width="30"></a>
+								{% endif %}
+								<strong>{{ comment.author }}:</strong>
+                    		
+								{{ comment.text }}
                     		</li>
                     		{% empty %}
                     		<li>No comments yet.</li>

@@ -27,7 +27,7 @@ Author - Pintereso
 	{% endfor %}
 	{% else %}
 	<div class="container mb-4">
-		<p>no profile pic</p>
+		<a href="{% url 'edit-profile' %}"><img src="{% static 'assets/img/no-dp.png' %}" alt="upload image" class="mt-neg100 mb-4 rounded-circle" width="128"></a>
 		<p>no bio</p>
 		<div class="edit-profile-button">
 			<a href="{% url 'edit-profile' %}"><button type="button">Edit profile</button></a>
