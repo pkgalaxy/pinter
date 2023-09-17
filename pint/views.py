@@ -172,21 +172,22 @@ def like_post(request, post_id):
     return redirect('single-post', pk=post_id)
 
 def change_post_details(requests):
-    if requests.method == 'POST':        
-        form = Change_post(requests.POST)
-        if form.is_valid(): 
-            user = requests.user
-            profile = post.objects.get(var=user)
+        pass
+    # if requests.method == 'POST':        
+    #     form = Change_post(requests.POST)
+    #     if form.is_valid(): 
+    #         user = requests.user
+    #         profile = post.objects.get(var=user)
 
-            # Assign the profile picture and bio
-            profile.title = form.cleaned_data['title']
-            profile.desc = form.cleaned_data['desc']
-            profile.save()          
+    #         # Assign the profile picture and bio
+    #         profile.title = form.cleaned_data['title']
+    #         profile.desc = form.cleaned_data['desc']
+    #         profile.save()          
             
-            return redirect('user-post/')  # Redirect to a success page or another view
-    else:
-        form = Change_post()
-    return render(requests, 'change_post.html', {'form': form})
+    #         return redirect('user-post/')  # Redirect to a success page or another view
+    # else:
+    #     form = Change_post()
+    # return render(requests, 'change_post.html', {'form': form})
     
 
 

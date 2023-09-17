@@ -17,12 +17,12 @@ Post - Pintereso
 					<div class="download-button">
 						<a href="{{ blog.image.url }}" download><button type="button" class="btn btn-success">Download Image</button></a>
 					</div>
-
+					<!-- <a href="{% url 'change_post' %}">Edit Post</a> -->
 					<div class="pd-dp">
 						{% if owner_profile.profile_picture %}
-						<img src="{{ owner_profile.profile_picture.url }}" alt="">
+						<img src="{{ owner_profile.profile_picture.url }}" alt="load...">
 						{% else %}
-						<img src="{% static 'assets/img/no-dp.png'  %}" alt="">
+						<img src="{% static 'assets/img/no-dp.png'  %}" alt="load...">
 						{% endif %}
 
 						{% if blog.var.username == user.username %}
