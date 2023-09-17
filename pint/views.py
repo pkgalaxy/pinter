@@ -12,6 +12,7 @@ def home(requests):
     paginator=Paginator(data,12)
     page_number = requests.GET.get('page')
     page = paginator.get_page(page_number)
+    # wata = Profile.objects.filter(car=requests.user)
    
     return render(requests, 'home.html', { 'page' : page})
 
@@ -19,6 +20,14 @@ def home(requests):
 def po_st(requests,pk):  #single post
    blog= post.objects.get(id=pk)
    owner_profile = Profile.objects.get(car=blog.var)  # Get the profile of the owner
+   
+   if owner_profile is None:
+       owner_profile = Profile(
+       bio="no bio"
+       )
+       owner_profile.save()
+   else:
+       pass
 
    cost = get_object_or_404(post, id=pk)   #comment section
    
@@ -49,6 +58,7 @@ def po_st(requests,pk):  #single post
 def user_post(requests):   #author
     user_posts = post.objects.filter(var=requests.user).order_by('-create_date')
     xyz=Profile.objects.filter(car=requests.user)
+    wata=Profile.objects.filter(car=requests.user)
     return render(requests, 'author.html', {'user_posts': user_posts, 'xyz':xyz})
 
 @login_required
@@ -64,7 +74,7 @@ def post_upload(requests):
             return redirect('user-post/')  # Redirect to a success page or another view
     else:
         form = UserData()
-    return render(requests, 'post-upload.html', {'form': form})
+    return render(requests, 'post-upload.html', {'form': form,})
 
 def log_in(requests):
    
@@ -84,14 +94,17 @@ def log_in(requests):
 def sign_up(requests):
     if requests.method == 'POST' :
         uname=requests.POST.get('username')
-        email=requests.POST.get('email')        
+        # email=requests.POST.get('email')        
         pass1=requests.POST.get('password1')
         pass2=requests.POST.get('password2')
         if pass1 != pass2:
             return HttpResponse("Password are not same")
         else:
-            my_user=User.objects.create_user(uname,email,pass1)
+            my_user=User.objects.create_user(username=uname,password=pass1)
             my_user.save()
+            
+            profile = Profile(car=my_user)
+            profile.save()    
             return redirect('login/')
         
     return render (requests, 'signup.html')
@@ -157,6 +170,24 @@ def like_post(request, post_id):
         post_to_like.likes.add(request.user)
     
     return redirect('single-post', pk=post_id)
+
+def change_post_details(requests):
+    if requests.method == 'POST':        
+        form = Change_post(requests.POST)
+        if form.is_valid(): 
+            user = requests.user
+            profile = post.objects.get(var=user)
+
+            # Assign the profile picture and bio
+            profile.title = form.cleaned_data['title']
+            profile.desc = form.cleaned_data['desc']
+            profile.save()          
+            
+            return redirect('user-post/')  # Redirect to a success page or another view
+    else:
+        form = Change_post()
+    return render(requests, 'change_post.html', {'form': form})
+    
 
 
 

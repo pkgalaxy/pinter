@@ -18,8 +18,8 @@ class post(models.Model):
     
 
 class Profile(models.Model):
-    profile_picture=models.ImageField(upload_to='profile_picture', null=True)
-    bio=models.TextField(max_length=150, null=True)
+    profile_picture=models.ImageField(upload_to='profile_picture', null=True, default="profile_picture/no-dp.png")
+    bio=models.TextField(max_length=150, null=True, default="No bio")
     car=models.ForeignKey(User, default=1, null=True, on_delete=models.CASCADE)
     
     

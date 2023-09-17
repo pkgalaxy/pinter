@@ -13,6 +13,7 @@ urlpatterns = [
     path('edit-profile/' , edit_profile , name='edit-profile' ),
     path('explore/' , explore , name='explore' ),
     path('like/<int:post_id>/', like_post, name='like-post'),
+    path('change_post_details', change_post_details, name='change_post'),
     
    
 

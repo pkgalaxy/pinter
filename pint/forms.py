@@ -22,5 +22,10 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('text',)
+        
+class Change_post(forms.ModelForm):
+    class Meta:
+        model = post
+        fields = ['title', 'desc']
     
 

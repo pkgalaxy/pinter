@@ -19,8 +19,14 @@ Post - Pintereso
 					</div>
 
 					<div class="pd-dp">
+						{% if owner_profile.profile_picture %}
 						<img src="{{ owner_profile.profile_picture.url }}" alt="">
-						{% if blog.var.username == user.username %}<p><a href="{% url 'user-post/' %}">{{ blog.var.username }}</a></p>
+						{% else %}
+						<img src="{% static 'assets/img/no-dp.png'  %}" alt="">
+						{% endif %}
+
+						{% if blog.var.username == user.username %}
+						<p><a href="{% url 'user-post/' %}">{{ blog.var.username }}</a></p>
 						{% else %}
 						<p><a href="{% url 'owner' blog.var %}">{{ blog.var.username }}</a></p>
 						{% endif %}
